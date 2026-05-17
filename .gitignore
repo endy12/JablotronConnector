@@ -1,0 +1,6 @@
+venv/
+/__pycache__ls
+.env
+.env.local
+*.env
+*.pyc
