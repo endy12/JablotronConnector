@@ -10,10 +10,7 @@ import time
 import requests
 from pathlib import Path
 from datetime import datetime
-from dotenv import load_dotenv
 from jablotronpy.jablotronpy import Jablotron
-
-load_dotenv(Path(__file__).parent / ".env.local")
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
