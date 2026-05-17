@@ -47,7 +47,10 @@ def get_gate_state(jab: Jablotron, service_id: int) -> str:
 def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # ── Initial login ─────────────────────────────────────────────────────────
+    print(f"USER: {JAB_USER}")
+    print(f"PASS length: {len(JAB_PASS) if JAB_PASS else 0}")
+    print(f"PIN: {JAB_PIN}")
+
     print("Logging into Jablotron Cloud...")
     try:
         jab = Jablotron(username=JAB_USER, password=JAB_PASS, pin_code=JAB_PIN)
