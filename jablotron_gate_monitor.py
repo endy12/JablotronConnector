@@ -46,7 +46,7 @@ def get_gate_state(jab: Jablotron, service_id: int) -> str:
 # ── Main loop ─────────────────────────────────────────────────────────────────
 
 def main():
-    now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M:%S")    
+    now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M")    
 
     print("Logging into Jablotron Cloud...")
     try:
@@ -67,7 +67,7 @@ def main():
 
     # ── Polling loop ──────────────────────────────────────────────────────────
     while True:
-        now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M:%S")   
+        now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M")   
         try:
             state = get_gate_state(jab, service_id)
             print(f"[{now}] Gate state: {state}")
