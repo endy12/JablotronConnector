@@ -10,6 +10,7 @@ import time
 import requests
 from pathlib import Path
 from datetime import datetime
+import zoneinfo
 from jablotronpy.jablotronpy import Jablotron
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -45,7 +46,7 @@ def get_gate_state(jab: Jablotron, service_id: int) -> str:
 # ── Main loop ─────────────────────────────────────────────────────────────────
 
 def main():
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M:%S")    
 
     print("Logging into Jablotron Cloud...")
     try:
