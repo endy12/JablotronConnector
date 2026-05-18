@@ -67,7 +67,7 @@ def main():
 
     # ── Polling loop ──────────────────────────────────────────────────────────
     while True:
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M:%S")   
         try:
             state = get_gate_state(jab, service_id)
             print(f"[{now}] Gate state: {state}")
