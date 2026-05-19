@@ -22,6 +22,7 @@ DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 
 GATE_ID         = "PG-69118156"   # BRANA SIGNAL
 CHECK_INTERVAL  = 5 * 60          # 5 minutes in seconds
+TZ              = zoneinfo.ZoneInfo("Europe/Bratislava")
 
 # ── Discord ───────────────────────────────────────────────────────────────────
 
@@ -29,6 +30,9 @@ def send_discord_alert(message: str):
     if not DISCORD_WEBHOOK:
         print("[Discord] No webhook URL set, skipping.")
         return
+    # Print masked webhook for debugging
+    masked = DISCORD_WEBHOOK[:40] + "..." + DISCORD_WEBHOOK[-10:]
+    print(f"[Discord] Sending to: {masked}")
     payload = {"content": message}
     resp = requests.post(DISCORD_WEBHOOK, json=payload)
     if resp.status_code in (200, 204):
@@ -46,7 +50,9 @@ def get_gate_state(jab: Jablotron, service_id: int) -> str:
 # ── Main loop ─────────────────────────────────────────────────────────────────
 
 def main():
-    now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M")    
+    now = datetime.now(TZ).strftime("%Y-%m-%d %H:%M")
+    masked = DISCORD_WEBHOOK[:40] + "..." + DISCORD_WEBHOOK[-10:] if DISCORD_WEBHOOK else "NOT SET"
+    print(f"Discord webhook: {masked}")
 
     print("Logging into Jablotron Cloud...")
     try:
@@ -67,7 +73,7 @@ def main():
 
     # ── Polling loop ──────────────────────────────────────────────────────────
     while True:
-        now = datetime.now(zoneinfo.ZoneInfo("Europe/Bratislava")).strftime("%Y-%m-%d %H:%M")   
+        now = datetime.now(TZ).strftime("%Y-%m-%d %H:%M") 
         try:
             state = get_gate_state(jab, service_id)
             print(f"[{now}] Gate state: {state}")
