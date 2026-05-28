@@ -32,7 +32,7 @@ MQTT_PASS       = os.getenv("MQTT_PASS")
 MQTT_CLIENT_ID  = os.getenv("MQTT_CLIENT_ID", "jablotron_gate_monitor")
 
 GATE_ID         = "PG-69118156"   # BRANA SIGNAL
-CHECK_INTERVAL  = 5 * 60          # 5 minutes in seconds
+CHECK_INTERVAL  = 20          # 5 minutes in seconds
 TZ              = zoneinfo.ZoneInfo("Europe/Bratislava")
 
 # ── Discord ───────────────────────────────────────────────────────────────────
